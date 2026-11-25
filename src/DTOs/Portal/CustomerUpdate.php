@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\DTOs\Portal;
+
+/**
+ * PortalCustomerUpdate
+ */
+final class CustomerUpdate extends \Dmorenof\SdkRuntime\DTO
+{
+    public const array REQUIRED_FIELDS = [
+        'allowed_updates',
+        'enabled',
+    ];
+
+    /**
+     * The types of customer updates that are supported. When empty, customers are not updateable.
+     */
+    public \StripeSDK\Collections\Portal\CustomerUpdate\AllowedUpdatesCollection $allowed_updates;
+    /**
+     * Whether the feature is enabled.
+     */
+    public bool $enabled;
+
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'enabled' => is_bool($value) ? $this->enabled = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
+}

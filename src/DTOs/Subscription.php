@@ -1,0 +1,316 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\DTOs;
+
+/**
+ * Subscription
+ *
+ * Subscriptions allow you to charge a customer on a recurring basis.
+ *
+ * Related guide: [Creating subscriptions](https://docs.stripe.com/billing/subscriptions/creating)
+ */
+final class Subscription extends \Dmorenof\SdkRuntime\DTO
+{
+    public const array REQUIRED_FIELDS = [
+        'automatic_tax',
+        'billing_cycle_anchor',
+        'billing_mode',
+        'billing_schedules',
+        'cancel_at_period_end',
+        'collection_method',
+        'created',
+        'currency',
+        'customer',
+        'discounts',
+        'id',
+        'invoice_settings',
+        'items',
+        'livemode',
+        'metadata',
+        'object_',
+        'start_date',
+        'status',
+    ];
+
+    protected const array PROPERTY_MAP = [
+        'object' => 'object_',
+    ];
+    protected const array WIRE_PROPERTY_MAP = [
+        'object_' => 'object',
+    ];
+
+    protected const array VALIDATION = [
+        'customer_account' => [
+            'maxLength' => 5000,
+        ],
+        'description' => [
+            'maxLength' => 500,
+        ],
+        'id' => [
+            'maxLength' => 5000,
+        ],
+    ];
+
+    /**
+     * ID of the Connect Application that created the subscription.
+     */
+    public ?\StripeSDK\DTOs\Subscription\ApplicationDTO $application;
+    /**
+     * A non-negative decimal between 0 and 100, with at most two decimal places. This represents the percentage of the subscription invoice total that will be transferred to the application owner's Stripe account.
+     */
+    public ?float $application_fee_percent;
+    public \StripeSDK\DTOs\Subscription\AutomaticTax $automatic_tax;
+    /**
+     * The reference point that aligns future [billing cycle](https://docs.stripe.com/subscriptions/billing-cycle) dates. It sets the day of week for `week` intervals, the day of month for `month` and `year` intervals, and the month of year for `year` intervals. The timestamp is in UTC format.
+     * Format: unix-time
+     */
+    public int $billing_cycle_anchor;
+    /**
+     * The fixed values used to calculate the `billing_cycle_anchor`.
+     */
+    public ?\StripeSDK\DTOs\SubscriptionsResource\BillingCycleAnchorConfig $billing_cycle_anchor_config;
+    public \StripeSDK\DTOs\SubscriptionsResource\BillingMode $billing_mode;
+    /**
+     * Billing schedules for this subscription.
+     */
+    public \StripeSDK\Collections\Subscription\BillingSchedulesCollection $billing_schedules;
+    /**
+     * Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period
+     */
+    public ?\StripeSDK\DTOs\Subscription\BillingThresholds $billing_thresholds;
+    /**
+     * A date in the future at which the subscription will automatically get canceled
+     * Format: unix-time
+     */
+    public ?int $cancel_at;
+    /**
+     * Whether this subscription will (if `status=active`) or did (if `status=canceled`) cancel at the end of the current billing period.
+     */
+    public bool $cancel_at_period_end;
+    /**
+     * If the subscription has been canceled, the date of that cancellation. If the subscription was canceled with `cancel_at_period_end`, `canceled_at` will reflect the time of the most recent update request, not the end of the subscription period when the subscription is automatically moved to a canceled state.
+     * Format: unix-time
+     */
+    public ?int $canceled_at;
+    /**
+     * Details about why this subscription was cancelled
+     */
+    public ?\StripeSDK\DTOs\CancellationDetails $cancellation_details;
+    /**
+     * Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will attempt to pay this subscription at the end of the cycle using the default source attached to the customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as `active`.
+     */
+    public \StripeSDK\Enums\Subscription\CollectionMethodEnum $collection_method;
+    /**
+     * Time at which the object was created. Measured in seconds since the Unix epoch.
+     * Format: unix-time
+     */
+    public int $created;
+    /**
+     * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
+     * Format: currency
+     */
+    public string $currency;
+    /**
+     * ID of the customer who owns the subscription.
+     */
+    public \StripeSDK\DTOs\Subscription\CustomerDTO $customer;
+    /**
+     * ID of the account representing the customer who owns the subscription.
+     */
+    public ?string $customer_account {
+        set {
+            $this->assigning('customer_account', $value);
+            $this->customer_account = $value;
+        }
+    }
+    /**
+     * Number of days a customer has to pay invoices generated by this subscription. This value will be `null` for subscriptions where `collection_method=charge_automatically`.
+     */
+    public ?int $days_until_due;
+    /**
+     * ID of the default payment method for the subscription. It must belong to the customer associated with the subscription. This takes precedence over `default_source`. If neither are set, invoices will use the customer's [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) or [default_source](https://docs.stripe.com/api/customers/object#customer_object-default_source).
+     */
+    public ?\StripeSDK\DTOs\Subscription\PaymentMethodDTO $default_payment_method;
+    /**
+     * ID of the default payment source for the subscription. It must belong to the customer associated with the subscription and be in a chargeable state. If `default_payment_method` is also set, `default_payment_method` will take precedence. If neither are set, invoices will use the customer's [invoice_settings.default_payment_method](https://docs.stripe.com/api/customers/object#customer_object-invoice_settings-default_payment_method) or [default_source](https://docs.stripe.com/api/customers/object#customer_object-default_source).
+     */
+    public ?\StripeSDK\DTOs\Subscription\DefaultSourceDTO $default_source;
+    /**
+     * The tax rates that will apply to any subscription item that does not have `tax_rates` set. Invoices created will have their `default_tax_rates` populated from the subscription.
+     */
+    public ?\StripeSDK\Collections\Credit\NoteLineItem\TaxRatesCollection $default_tax_rates;
+    /**
+     * The subscription's description, meant to be displayable to the customer. Use this field to optionally store an explanation of the subscription for rendering in Stripe surfaces and certain local payment methods UIs.
+     */
+    public ?string $description {
+        set {
+            $this->assigning('description', $value);
+            $this->description = $value;
+        }
+    }
+    /**
+     * The discounts applied to the subscription. Subscription item discounts are applied before subscription discounts. Use `expand[]=discounts` to expand each discount.
+     */
+    public \StripeSDK\Collections\Subscription\DiscountsCollection $discounts;
+    /**
+     * If the subscription has ended, the date the subscription ended.
+     * Format: unix-time
+     */
+    public ?int $ended_at;
+    /**
+     * Unique identifier for the object.
+     */
+    public string $id {
+        set {
+            $this->assigning('id', $value);
+            $this->id = $value;
+        }
+    }
+    public \StripeSDK\DTOs\SubscriptionsResource\SubscriptionInvoiceSettings $invoice_settings;
+    /**
+     * List of subscription items, each with an attached price.
+     */
+    public \StripeSDK\DTOs\Subscription\ItemsDTO $items;
+    /**
+     * The most recent invoice this subscription has generated over its lifecycle (for example, when it cycles or is updated).
+     */
+    public ?\StripeSDK\DTOs\Subscription\LatestInvoiceDTO $latest_invoice;
+    /**
+     * If the object exists in live mode, the value is `true`. If the object exists in test mode, the value is `false`.
+     */
+    public bool $livemode;
+    /**
+     * Settings for Managed Payments for this Subscription and resulting [Invoices](/api/invoices/object) and [PaymentIntents](/api/payment_intents/object).
+     */
+    public ?\StripeSDK\DTOs\SmorResourceManagedPayments $managed_payments;
+    /**
+     * Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+     */
+    public \StripeSDK\DTOs\Subscription\MetadataMap $metadata;
+    /**
+     * Specifies the approximate timestamp on which any pending invoice items will be billed according to the schedule provided at `pending_invoice_item_interval`.
+     * Format: unix-time
+     */
+    public ?int $next_pending_invoice_item_invoice;
+    /**
+     * String representing the object's type. Objects of the same type share the same value.
+     */
+    public \StripeSDK\Enums\Subscription\ObjectEnum $object_;
+    /**
+     * The account (if any) the charge was made on behalf of for charges associated with this subscription. See the [Connect documentation](https://docs.stripe.com/connect/subscriptions#on-behalf-of) for details.
+     */
+    public ?\StripeSDK\DTOs\Subscription\OnBehalfDTO $on_behalf_of;
+    /**
+     * If specified, payment collection for this subscription will be paused. Note that the subscription status will be unchanged and will not be updated to `paused`. Learn more about [pausing collection](https://docs.stripe.com/billing/subscriptions/pause-payment).
+     */
+    public ?\StripeSDK\DTOs\SubscriptionsResource\PauseCollection $pause_collection;
+    /**
+     * Payment settings passed on to invoices created by the subscription.
+     */
+    public ?\StripeSDK\DTOs\SubscriptionsResource\PaymentSettings $payment_settings;
+    /**
+     * Specifies an interval for how often to bill for any pending invoice items. It is analogous to calling [Create an invoice](/api/invoices/create) for the given subscription at the specified interval.
+     */
+    public ?\StripeSDK\DTOs\Subscription\PendingInvoiceItemInterval $pending_invoice_item_interval;
+    /**
+     * You can use this [SetupIntent](https://docs.stripe.com/api/setup_intents) to collect user authentication when creating a subscription without immediate payment or updating a subscription's payment method, allowing you to optimize for off-session payments. Learn more in the [SCA Migration Guide](https://docs.stripe.com/billing/migration/strong-customer-authentication#scenario-2).
+     */
+    public ?\StripeSDK\DTOs\Subscription\SetupIntentDTO $pending_setup_intent;
+    /**
+     * If specified, [pending updates](https://docs.stripe.com/billing/subscriptions/pending-updates) that will be applied to the subscription once the `latest_invoice` has been paid.
+     */
+    public ?\StripeSDK\DTOs\SubscriptionsResource\PendingUpdate $pending_update;
+    public \StripeSDK\DTOs\SubscriptionsResource\SubscriptionPresentmentDetails $presentment_details;
+    /**
+     * The schedule attached to the subscription
+     */
+    public ?\StripeSDK\DTOs\Subscription\ScheduleDTO $schedule;
+    /**
+     * Date when the subscription was first created. The date might differ from the `created` date due to backdating.
+     * Format: unix-time
+     */
+    public int $start_date;
+    /**
+     * Possible values are `incomplete`, `incomplete_expired`, `trialing`, `active`, `past_due`, `canceled`, `unpaid`, or `paused`.
+     *
+     * For `collection_method=charge_automatically` a subscription moves into `incomplete` if the initial payment attempt fails. A subscription in this status can only have metadata and default_source updated. Once the first invoice is paid, the subscription moves into an `active` status. If the first invoice is not paid within 23 hours, the subscription transitions to `incomplete_expired`. This is a terminal status, the open invoice will be voided and no further invoices will be generated.
+     *
+     * A subscription that is currently in a trial period is `trialing` and moves to `active` when the trial period is over.
+     *
+     * A subscription can only enter a `paused` status [when a trial ends without a payment method](https://docs.stripe.com/billing/subscriptions/trials/free-trials#create-free-trials-without-payment). A `paused` subscription doesn't generate invoices and can be resumed after your customer adds their payment method. The `paused` status is different from [pausing collection](https://docs.stripe.com/billing/subscriptions/pause-payment), which still generates invoices and leaves the subscription's status unchanged.
+     *
+     * If subscription `collection_method=charge_automatically`, it becomes `past_due` when payment is required but cannot be paid (due to failed payment or awaiting additional user actions). Once Stripe has exhausted all payment retry attempts, the subscription will become `canceled` or `unpaid` (depending on your subscriptions settings).
+     *
+     * If subscription `collection_method=send_invoice` it becomes `past_due` when its invoice is not paid by the due date, and `canceled` or `unpaid` if it is still not paid by an additional deadline after that. Note that when a subscription has a status of `unpaid`, no subsequent invoices will be attempted (invoices will be created, but then immediately automatically closed). After receiving updated payment information from a customer, you may choose to reopen and pay their closed invoices.
+     */
+    public \StripeSDK\Enums\Subscription\StatusEnum $status;
+    public \StripeSDK\DTOs\SubscriptionsResource\StatusDetailsPublic $status_details;
+    /**
+     * ID of the test clock this subscription belongs to.
+     */
+    public ?\StripeSDK\DTOs\Subscription\TestClockDTO $test_clock;
+    /**
+     * The account (if any) the subscription's payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the subscription's invoices.
+     */
+    public ?\StripeSDK\DTOs\Subscription\TransferData $transfer_data;
+    /**
+     * If the subscription has a trial, the end of that trial.
+     * Format: unix-time
+     */
+    public ?int $trial_end;
+    /**
+     * Settings related to subscription trials.
+     */
+    public ?\StripeSDK\DTOs\SubscriptionsResource\TrialSettingsTrialSettings $trial_settings;
+    /**
+     * If the subscription has a trial, the beginning of that trial.
+     * Format: unix-time
+     */
+    public ?int $trial_start;
+
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'application_fee_percent' => $value === null || is_float($value) ? $this->application_fee_percent = $value : parent::assignMember($name, $value),
+            'automatic_tax' => $value instanceof \stdClass ? $this->automatic_tax = new \StripeSDK\DTOs\Subscription\AutomaticTax($value) : parent::assignMember($name, $value),
+            'billing_cycle_anchor' => is_int($value) ? $this->billing_cycle_anchor = $value : parent::assignMember($name, $value),
+            'billing_cycle_anchor_config' => $value === null || $value instanceof \stdClass ? $this->billing_cycle_anchor_config = $value === null ? null : new \StripeSDK\DTOs\SubscriptionsResource\BillingCycleAnchorConfig($value) : parent::assignMember($name, $value),
+            'billing_mode' => $value instanceof \stdClass ? $this->billing_mode = new \StripeSDK\DTOs\SubscriptionsResource\BillingMode($value) : parent::assignMember($name, $value),
+            'billing_schedules' => is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => $item instanceof \stdClass) ? $this->billing_schedules = new \StripeSDK\Collections\Subscription\BillingSchedulesCollection(\Dmorenof\SdkRuntime\Hydrator::models($value, \StripeSDK\DTOs\SubscriptionsResource\BillingSchedules::class)) : parent::assignMember($name, $value),
+            'billing_thresholds' => $value === null || $value instanceof \stdClass ? $this->billing_thresholds = $value === null ? null : new \StripeSDK\DTOs\Subscription\BillingThresholds($value) : parent::assignMember($name, $value),
+            'cancel_at' => $value === null || is_int($value) ? $this->cancel_at = $value : parent::assignMember($name, $value),
+            'cancel_at_period_end' => is_bool($value) ? $this->cancel_at_period_end = $value : parent::assignMember($name, $value),
+            'canceled_at' => $value === null || is_int($value) ? $this->canceled_at = $value : parent::assignMember($name, $value),
+            'cancellation_details' => $value === null || $value instanceof \stdClass ? $this->cancellation_details = $value === null ? null : new \StripeSDK\DTOs\CancellationDetails($value) : parent::assignMember($name, $value),
+            'collection_method' => is_string($value) ? $this->collection_method = \StripeSDK\Enums\Subscription\CollectionMethodEnum::from($value) : parent::assignMember($name, $value),
+            'created' => is_int($value) ? $this->created = $value : parent::assignMember($name, $value),
+            'currency' => is_string($value) ? $this->currency = $value : parent::assignMember($name, $value),
+            'customer_account' => $value === null || is_string($value) ? $this->customer_account = $value : parent::assignMember($name, $value),
+            'days_until_due' => $value === null || is_int($value) ? $this->days_until_due = $value : parent::assignMember($name, $value),
+            'default_tax_rates' => $value === null || (is_array($value) && array_is_list($value) && array_all($value, static fn (mixed $item): bool => $item instanceof \stdClass)) ? $this->default_tax_rates = $value === null ? null : new \StripeSDK\Collections\Credit\NoteLineItem\TaxRatesCollection(\Dmorenof\SdkRuntime\Hydrator::models($value, \StripeSDK\DTOs\TaxRate::class)) : parent::assignMember($name, $value),
+            'description' => $value === null || is_string($value) ? $this->description = $value : parent::assignMember($name, $value),
+            'ended_at' => $value === null || is_int($value) ? $this->ended_at = $value : parent::assignMember($name, $value),
+            'id' => is_string($value) ? $this->id = $value : parent::assignMember($name, $value),
+            'invoice_settings' => $value instanceof \stdClass ? $this->invoice_settings = new \StripeSDK\DTOs\SubscriptionsResource\SubscriptionInvoiceSettings($value) : parent::assignMember($name, $value),
+            'livemode' => is_bool($value) ? $this->livemode = $value : parent::assignMember($name, $value),
+            'managed_payments' => $value === null || $value instanceof \stdClass ? $this->managed_payments = $value === null ? null : new \StripeSDK\DTOs\SmorResourceManagedPayments($value) : parent::assignMember($name, $value),
+            'next_pending_invoice_item_invoice' => $value === null || is_int($value) ? $this->next_pending_invoice_item_invoice = $value : parent::assignMember($name, $value),
+            'object' => is_string($value) ? $this->object_ = \StripeSDK\Enums\Subscription\ObjectEnum::from($value) : parent::assignMember($name, $value),
+            'pause_collection' => $value === null || $value instanceof \stdClass ? $this->pause_collection = $value === null ? null : new \StripeSDK\DTOs\SubscriptionsResource\PauseCollection($value) : parent::assignMember($name, $value),
+            'payment_settings' => $value === null || $value instanceof \stdClass ? $this->payment_settings = $value === null ? null : new \StripeSDK\DTOs\SubscriptionsResource\PaymentSettings($value) : parent::assignMember($name, $value),
+            'pending_invoice_item_interval' => $value === null || $value instanceof \stdClass ? $this->pending_invoice_item_interval = $value === null ? null : new \StripeSDK\DTOs\Subscription\PendingInvoiceItemInterval($value) : parent::assignMember($name, $value),
+            'pending_update' => $value === null || $value instanceof \stdClass ? $this->pending_update = $value === null ? null : new \StripeSDK\DTOs\SubscriptionsResource\PendingUpdate($value) : parent::assignMember($name, $value),
+            'presentment_details' => $value instanceof \stdClass ? $this->presentment_details = new \StripeSDK\DTOs\SubscriptionsResource\SubscriptionPresentmentDetails($value) : parent::assignMember($name, $value),
+            'start_date' => is_int($value) ? $this->start_date = $value : parent::assignMember($name, $value),
+            'status' => is_string($value) ? $this->status = \StripeSDK\Enums\Subscription\StatusEnum::from($value) : parent::assignMember($name, $value),
+            'status_details' => $value instanceof \stdClass ? $this->status_details = new \StripeSDK\DTOs\SubscriptionsResource\StatusDetailsPublic($value) : parent::assignMember($name, $value),
+            'transfer_data' => $value === null || $value instanceof \stdClass ? $this->transfer_data = $value === null ? null : new \StripeSDK\DTOs\Subscription\TransferData($value) : parent::assignMember($name, $value),
+            'trial_end' => $value === null || is_int($value) ? $this->trial_end = $value : parent::assignMember($name, $value),
+            'trial_settings' => $value === null || $value instanceof \stdClass ? $this->trial_settings = $value === null ? null : new \StripeSDK\DTOs\SubscriptionsResource\TrialSettingsTrialSettings($value) : parent::assignMember($name, $value),
+            'trial_start' => $value === null || is_int($value) ? $this->trial_start = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
+}

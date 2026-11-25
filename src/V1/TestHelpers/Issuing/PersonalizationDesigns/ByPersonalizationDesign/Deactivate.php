@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\V1\TestHelpers\Issuing\PersonalizationDesigns\ByPersonalizationDesign;
+
+final class Deactivate extends \StripeSDK\StripeAPISDK
+{
+    /** POST /v1/test_helpers/issuing/personalization_designs/{personalization_design}/deactivate [operationId: PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignDeactivate] */
+    /**
+     * Deactivate a testmode personalization design
+     *
+     * <p>Updates the <code>status</code> of the specified testmode personalization design object to <code>inactive</code>.</p>
+     */
+    public static function post(string $personalization_design, ?\StripeSDK\Requests\V1\TestHelpers\Issuing\PersonalizationDesigns\ByPersonalizationDesign\Deactivate\Post $payload = null): \StripeSDK\DTOs\Issuing\PersonalizationDesign|\StripeSDK\DTOs\Error|null
+    {
+        return self::client()->resource(\StripeSDK\Resources\V1\TestHelpers\Issuing\PersonalizationDesigns\ByPersonalizationDesign\Deactivate::class)->post($personalization_design, $payload);
+    }
+}

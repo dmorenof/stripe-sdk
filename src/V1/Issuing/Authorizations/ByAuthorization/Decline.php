@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\V1\Issuing\Authorizations\ByAuthorization;
+
+final class Decline extends \StripeSDK\StripeAPISDK
+{
+    /** POST /v1/issuing/authorizations/{authorization}/decline [operationId: PostIssuingAuthorizationsAuthorizationDecline] */
+    /**
+     * Decline an authorization
+     *
+     * <p>[Deprecated] Declines a pending Issuing <code>Authorization</code> object. This request should be made within the timeout window of the <a href="/docs/issuing/controls/real-time-authorizations">real time authorization</a> flow.
+     * This method is deprecated. Instead, <a href="/docs/issuing/controls/real-time-authorizations#authorization-handling">respond directly to the webhook request to decline an authorization</a>.</p>
+     *
+     * @deprecated
+     */
+    public static function post(string $authorization, ?\StripeSDK\Requests\V1\Issuing\Authorizations\ByAuthorization\Decline\Post $payload = null): \StripeSDK\DTOs\Issuing\Authorization|\StripeSDK\DTOs\Error|null
+    {
+        return self::client()->resource(\StripeSDK\Resources\V1\Issuing\Authorizations\ByAuthorization\Decline::class)->post($authorization, $payload);
+    }
+}

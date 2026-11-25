@@ -1,0 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Requests\ShippingOptionsRequestVariant1Item\ShippingRateData\DeliveryEstimate;
+
+/**
+ * delivery_estimate_bound
+ */
+final class EstimateMaximumRequest extends \Dmorenof\SdkRuntime\DTO
+{
+    public const array REQUIRED_FIELDS = [
+        'unit',
+        'value',
+    ];
+
+    public \StripeSDK\Enums\ShippingOptionsRequestVariant1Item\ShippingRateData\DeliveryEstimate\Maximum\MaximumUnitEnum $unit;
+    public int $value;
+
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'unit' => is_string($value) ? $this->unit = \StripeSDK\Enums\ShippingOptionsRequestVariant1Item\ShippingRateData\DeliveryEstimate\Maximum\MaximumUnitEnum::from($value) : parent::assignMember($name, $value),
+            'value' => is_int($value) ? $this->value = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
+}

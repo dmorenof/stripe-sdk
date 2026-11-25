@@ -1,0 +1,38 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Requests\V1\Terminal\Configurations\ByConfiguration\Post;
+
+final class VerifoneP630Request extends \Dmorenof\SdkRuntime\AnyOf
+{
+    protected const array TYPES = [\StripeSDK\Requests\P630Variant1Request::class, \StripeSDK\Enums\P630Variant2Enum::class];
+    protected const array BRANCH_SCHEMAS = [
+        [
+            'kind' => 'object',
+            'properties' => [
+                'splashscreen' => [
+                    'kind' => 'anyOf',
+                    'branches' => [
+                        [
+                            'kind' => 'string',
+                        ],
+                        [
+                            'kind' => 'string',
+                            'enum' => [
+                                '',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        [
+            'kind' => 'string',
+            'enum' => [
+                '',
+            ],
+        ],
+    ];
+    protected const array SCHEMA_DEFINITIONS = [];
+}

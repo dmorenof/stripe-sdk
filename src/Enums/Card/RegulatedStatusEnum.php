@@ -1,0 +1,11 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Enums\Card;
+
+enum RegulatedStatusEnum: string
+{
+    case Regulated = 'regulated';
+    case Unregulated = 'unregulated';
+}

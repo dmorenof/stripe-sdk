@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Requests\InvoiceIntervalRequest2Variant1;
+
+/**
+ * pending_invoice_item_interval_params
+ */
+final class Request2Variant1Request extends \Dmorenof\SdkRuntime\DTO
+{
+    public const array REQUIRED_FIELDS = [
+        'interval',
+    ];
+
+    public \StripeSDK\Enums\InvoiceIntervalRequest2Variant1\InvoiceIntervalRequest2Variant1IntervalEnum $interval;
+    public int $interval_count;
+
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'interval' => is_string($value) ? $this->interval = \StripeSDK\Enums\InvoiceIntervalRequest2Variant1\InvoiceIntervalRequest2Variant1IntervalEnum::from($value) : parent::assignMember($name, $value),
+            'interval_count' => is_int($value) ? $this->interval_count = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
+}

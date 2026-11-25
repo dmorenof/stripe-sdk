@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Requests\V1\Treasury\FinancialAccounts\ByFinancialAccount\Features\Post;
+
+/**
+ * access
+ *
+ * Encodes the FinancialAccount's ability to be used with the Issuing product, including attaching cards to and drawing funds from the FinancialAccount.
+ */
+final class CardIssuingRequest extends \Dmorenof\SdkRuntime\DTO
+{
+    public const array REQUIRED_FIELDS = [
+        'requested',
+    ];
+
+    public bool $requested;
+
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'requested' => is_bool($value) ? $this->requested = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
+}

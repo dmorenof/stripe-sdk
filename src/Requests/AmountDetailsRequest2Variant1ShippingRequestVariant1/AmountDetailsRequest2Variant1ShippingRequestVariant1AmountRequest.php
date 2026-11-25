@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Requests\AmountDetailsRequest2Variant1ShippingRequestVariant1;
+
+final class AmountDetailsRequest2Variant1ShippingRequestVariant1AmountRequest extends \Dmorenof\SdkRuntime\AnyOf
+{
+    protected const array TYPES = ['int', \StripeSDK\Enums\AmountDetailsRequest2Variant1ShippingRequestVariant1AmountRequestVariant2\AmountVariant2Enum::class];
+    protected const array BRANCH_SCHEMAS = [
+        [
+            'kind' => 'integer',
+        ],
+        [
+            'kind' => 'string',
+            'enum' => [
+                '',
+            ],
+        ],
+    ];
+    protected const array SCHEMA_DEFINITIONS = [];
+}

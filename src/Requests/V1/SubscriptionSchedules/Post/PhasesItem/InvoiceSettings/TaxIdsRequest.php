@@ -1,0 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Requests\V1\SubscriptionSchedules\Post\PhasesItem\InvoiceSettings;
+
+final class TaxIdsRequest extends \Dmorenof\SdkRuntime\AnyOf
+{
+    protected const array TYPES = [\StripeSDK\Collections\Account\CapabilityFutureRequirements\CurrentlyDueCollection::class, \StripeSDK\Enums\TaxIdsRequest11Variant2\Request11Variant2Enum::class];
+    protected const array BRANCH_SCHEMAS = [
+        [
+            'kind' => 'array',
+            'items' => [
+                'kind' => 'string',
+                'rules' => [
+                    'maxLength' => 5000,
+                ],
+            ],
+        ],
+        [
+            'kind' => 'string',
+            'enum' => [
+                '',
+            ],
+        ],
+    ];
+    protected const array SCHEMA_DEFINITIONS = [];
+}

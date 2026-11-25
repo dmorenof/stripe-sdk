@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Enums\V1\SetupIntents\Post\PaymentMethodOptions\Card;
+
+enum CardNetworkEnum: string
+{
+    case Amex = 'amex';
+    case CartesBancaires = 'cartes_bancaires';
+    case Diners = 'diners';
+    case Discover = 'discover';
+    case EftposAu = 'eftpos_au';
+    case Girocard = 'girocard';
+    case Interac = 'interac';
+    case Jcb = 'jcb';
+    case Link = 'link';
+    case Mastercard = 'mastercard';
+    case Unionpay = 'unionpay';
+    case Unknown = 'unknown';
+    case Visa = 'visa';
+}

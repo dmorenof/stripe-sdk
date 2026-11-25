@@ -1,0 +1,117 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Resources\V1\Treasury;
+
+final class ReceivedDebits extends \StripeSDK\Client
+{
+    private const array GET = [
+        'method' => 'GET',
+        'path' => '/v1/treasury/received_debits',
+        'security' => [
+            [
+                'basicAuth' => [],
+            ],
+            [
+                'bearerAuth' => [],
+            ],
+        ],
+        'success' => [
+            200,
+            'default',
+        ],
+        'errors' => [
+            'default' => '\\StripeSDK\\DTOs\\Error',
+        ],
+        'errorResponses' => [
+            'default' => [
+                'type' => '\\StripeSDK\\DTOs\\Error',
+                'schemaNullable' => false,
+            ],
+        ],
+        'responseTypes' => [
+            200 => [
+                'type' => '\\StripeSDK\\Responses\\V1\\Treasury\\ReceivedDebits\\GetStatus200',
+                'schemaNullable' => false,
+            ],
+            'default' => [
+                'type' => '\\StripeSDK\\DTOs\\Error',
+                'schemaNullable' => false,
+            ],
+        ],
+        'querySerialization' => [
+            'expand' => 'nested',
+        ],
+        'requestMediaType' => 'application/x-www-form-urlencoded',
+    ];
+
+    /**
+     * List all ReceivedDebits
+     *
+     * <p>Returns a list of ReceivedDebits.</p>
+     */
+    public function get(\StripeSDK\GetParams\V1\Treasury\ReceivedDebits $params): \StripeSDK\Responses\V1\Treasury\ReceivedDebits\GetStatus200|\StripeSDK\DTOs\Error|null
+    {
+        /** @var \StripeSDK\Responses\V1\Treasury\ReceivedDebits\GetStatus200|\StripeSDK\DTOs\Error|null $result */
+        $result = $this->executeArguments(self::operation(self::GET), parameters: $params);
+        return $result;
+    }
+
+    private const array GET_BY_ID = [
+        'method' => 'GET',
+        'path' => '/v1/treasury/received_debits/{id}',
+        'security' => [
+            [
+                'basicAuth' => [],
+            ],
+            [
+                'bearerAuth' => [],
+            ],
+        ],
+        'success' => [
+            200,
+            'default',
+        ],
+        'errors' => [
+            'default' => '\\StripeSDK\\DTOs\\Error',
+        ],
+        'errorResponses' => [
+            'default' => [
+                'type' => '\\StripeSDK\\DTOs\\Error',
+                'schemaNullable' => false,
+            ],
+        ],
+        'responseTypes' => [
+            200 => [
+                'type' => '\\StripeSDK\\DTOs\\Treasury\\ReceivedDebit',
+                'schemaNullable' => false,
+            ],
+            'default' => [
+                'type' => '\\StripeSDK\\DTOs\\Error',
+                'schemaNullable' => false,
+            ],
+        ],
+        'validation' => [
+            'id' => [
+                'maxLength' => 5000,
+            ],
+        ],
+        'querySerialization' => [
+            'expand' => 'nested',
+        ],
+        'requestMediaType' => 'application/x-www-form-urlencoded',
+    ];
+
+    /**
+     * Retrieve a ReceivedDebit
+     *
+     * <p>Retrieves the details of an existing ReceivedDebit by passing the unique ReceivedDebit ID from the ReceivedDebit list</p>
+     */
+    public function getById(string $id, ?\StripeSDK\GetParams\V1\Treasury\ReceivedDebits\ById $params = null): \StripeSDK\DTOs\Treasury\ReceivedDebit|\StripeSDK\DTOs\Error|null
+    {
+        /** @var \StripeSDK\DTOs\Treasury\ReceivedDebit|\StripeSDK\DTOs\Error|null $result */
+        $result = $this->executeArguments(self::operation(self::GET_BY_ID), path: ['id' => $id], parameters: $params);
+        return $result;
+    }
+}

@@ -1,0 +1,25 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Requests;
+
+/**
+ * amount_details_tax_param
+ */
+final class TaxVariant1Request extends \Dmorenof\SdkRuntime\DTO
+{
+    public const array REQUIRED_FIELDS = [
+        'total_tax_amount',
+    ];
+
+    public int $total_tax_amount;
+
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'total_tax_amount' => is_int($value) ? $this->total_tax_amount = $value : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
+}

@@ -1,0 +1,40 @@
+<?php
+
+declare(strict_types=1);
+
+namespace StripeSDK\Requests\V1\Checkout\Sessions\Post\PaymentMethodOptions;
+
+/**
+ * payment_method_options_param
+ */
+final class WechatPayRequest extends \Dmorenof\SdkRuntime\DTO
+{
+    public const array REQUIRED_FIELDS = [
+        'client',
+    ];
+
+    protected const array VALIDATION = [
+        'app_id' => [
+            'maxLength' => 5000,
+        ],
+    ];
+
+    public string $app_id {
+        set {
+            $this->assigning('app_id', $value);
+            $this->app_id = $value;
+        }
+    }
+    public \StripeSDK\Enums\V1\Checkout\Sessions\Post\PaymentMethodOptions\WechatPay\PayClientEnum $client;
+    public \StripeSDK\Enums\V1\Checkout\Sessions\Post\PaymentMethodOptions\WechatPay\FutureUsageEnum $setup_future_usage;
+
+    protected function assignMember(string $name, mixed $value): void
+    {
+        match ($name) {
+            'app_id' => is_string($value) ? $this->app_id = $value : parent::assignMember($name, $value),
+            'client' => is_string($value) ? $this->client = \StripeSDK\Enums\V1\Checkout\Sessions\Post\PaymentMethodOptions\WechatPay\PayClientEnum::from($value) : parent::assignMember($name, $value),
+            'setup_future_usage' => is_string($value) ? $this->setup_future_usage = \StripeSDK\Enums\V1\Checkout\Sessions\Post\PaymentMethodOptions\WechatPay\FutureUsageEnum::from($value) : parent::assignMember($name, $value),
+            default => parent::assignMember($name, $value),
+        };
+    }
+}
