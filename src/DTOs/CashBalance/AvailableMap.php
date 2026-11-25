@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\DTOs\CashBalance;
 
+/** @extends \Dmorenof\SdkRuntime\Map<int> */
 final class AvailableMap extends \Dmorenof\SdkRuntime\Map
 {
     protected const string VALUE_TYPE = 'int';

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Collections\SubscriptionsResource\BillingSchedules;
 
+/** @extends \Dmorenof\SdkRuntime\TypedArray<\StripeSDK\DTOs\SubscriptionsResource\BillingSchedulesAppliesTo> */
 final class AppliesToCollection extends \Dmorenof\SdkRuntime\TypedArray
 {
     protected string $expected_type = \StripeSDK\DTOs\SubscriptionsResource\BillingSchedulesAppliesTo::class;

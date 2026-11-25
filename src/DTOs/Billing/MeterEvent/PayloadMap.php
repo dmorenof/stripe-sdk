@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\DTOs\Billing\MeterEvent;
 
+/** @extends \Dmorenof\SdkRuntime\Map<string> */
 final class PayloadMap extends \Dmorenof\SdkRuntime\Map
 {
     protected const string VALUE_TYPE = 'string';

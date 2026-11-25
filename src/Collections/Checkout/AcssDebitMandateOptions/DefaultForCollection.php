@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Collections\Checkout\AcssDebitMandateOptions;
 
+/** @extends \Dmorenof\SdkRuntime\TypedArray<\StripeSDK\Enums\Checkout\AcssDebitMandateOptions\DefaultForEnum> */
 final class DefaultForCollection extends \Dmorenof\SdkRuntime\TypedArray
 {
     protected string $expected_type = \StripeSDK\Enums\Checkout\AcssDebitMandateOptions\DefaultForEnum::class;

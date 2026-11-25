@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\DTOs\Climate\Product;
 
+/** @extends \Dmorenof\SdkRuntime\Map<\StripeSDK\DTOs\ClimateRemovals\ProductsPrice> */
 final class MetricTonMap extends \Dmorenof\SdkRuntime\Map
 {
     protected const string VALUE_TYPE = '\\StripeSDK\\DTOs\\ClimateRemovals\\ProductsPrice';

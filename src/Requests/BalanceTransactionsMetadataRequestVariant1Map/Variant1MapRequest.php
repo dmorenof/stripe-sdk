@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Requests\BalanceTransactionsMetadataRequestVariant1Map;
 
+/** @extends \Dmorenof\SdkRuntime\Map<string> */
 final class Variant1MapRequest extends \Dmorenof\SdkRuntime\Map
 {
     protected const string VALUE_TYPE = 'string';

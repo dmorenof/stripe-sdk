@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Collections\Transfer\Reversals;
 
+/** @extends \Dmorenof\SdkRuntime\TypedArray<\StripeSDK\DTOs\Transfer\Reversal> */
 final class DataCollection extends \Dmorenof\SdkRuntime\TypedArray
 {
     protected string $expected_type = \StripeSDK\DTOs\Transfer\Reversal::class;

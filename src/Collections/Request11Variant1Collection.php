@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Collections;
 
+/** @extends \Dmorenof\SdkRuntime\TypedArray<\StripeSDK\Requests\CustomFieldsRequest11Variant1Item\Request11Variant1Request> */
 final class Request11Variant1Collection extends \Dmorenof\SdkRuntime\TypedArray
 {
     protected string $expected_type = \StripeSDK\Requests\CustomFieldsRequest11Variant1Item\Request11Variant1Request::class;

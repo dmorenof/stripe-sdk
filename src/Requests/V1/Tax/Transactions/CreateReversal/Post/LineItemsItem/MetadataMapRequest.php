@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Requests\V1\Tax\Transactions\CreateReversal\Post\LineItemsItem;
 
+/** @extends \Dmorenof\SdkRuntime\Map<string> */
 final class MetadataMapRequest extends \Dmorenof\SdkRuntime\Map
 {
     protected const string VALUE_TYPE = 'string';

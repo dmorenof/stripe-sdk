@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\DTOs\Transfer\Reversal;
 
+/** @extends \Dmorenof\SdkRuntime\Map<string> */
 final class MetadataMap extends \Dmorenof\SdkRuntime\Map
 {
     protected const string VALUE_TYPE = 'string';
