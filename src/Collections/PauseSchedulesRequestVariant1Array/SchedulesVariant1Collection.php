@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Collections\PauseSchedulesRequestVariant1Array;
 
+/** @extends \Dmorenof\SdkRuntime\TypedArray<\StripeSDK\Requests\PauseSchedulesRequestVariant1Item\SchedulesVariant1Request> */
 final class SchedulesVariant1Collection extends \Dmorenof\SdkRuntime\TypedArray
 {
     protected string $expected_type = \StripeSDK\Requests\PauseSchedulesRequestVariant1Item\SchedulesVariant1Request::class;

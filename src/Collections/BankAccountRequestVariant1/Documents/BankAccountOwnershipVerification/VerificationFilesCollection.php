@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Collections\BankAccountRequestVariant1\Documents\BankAccountOwnershipVerification;
 
+/** @extends \Dmorenof\SdkRuntime\TypedArray<string> */
 final class VerificationFilesCollection extends \Dmorenof\SdkRuntime\TypedArray
 {
     protected string $expected_type = 'string';

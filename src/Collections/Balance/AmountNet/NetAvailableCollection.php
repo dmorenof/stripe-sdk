@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Collections\Balance\AmountNet;
 
+/** @extends \Dmorenof\SdkRuntime\TypedArray<\StripeSDK\DTOs\Balance\NetAvailable> */
 final class NetAvailableCollection extends \Dmorenof\SdkRuntime\TypedArray
 {
     protected string $expected_type = \StripeSDK\DTOs\Balance\NetAvailable::class;

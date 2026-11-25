@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Collections\V1\Issuing\Cardholders\Post\SpendingControls;
 
+/** @extends \Dmorenof\SdkRuntime\TypedArray<\StripeSDK\Enums\V1\Issuing\Cardholders\Post\SpendingControls\AllowedCategoriesEnum> */
 final class AllowedCategoriesCollection extends \Dmorenof\SdkRuntime\TypedArray
 {
     protected string $expected_type = \StripeSDK\Enums\V1\Issuing\Cardholders\Post\SpendingControls\AllowedCategoriesEnum::class;

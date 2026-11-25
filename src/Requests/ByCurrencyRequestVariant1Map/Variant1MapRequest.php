@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StripeSDK\Requests\ByCurrencyRequestVariant1Map;
 
+/** @extends \Dmorenof\SdkRuntime\Map<\StripeSDK\Requests\Variant1ValueRequest> */
 final class Variant1MapRequest extends \Dmorenof\SdkRuntime\Map
 {
     protected const string VALUE_TYPE = '\\StripeSDK\\Requests\\Variant1ValueRequest';
